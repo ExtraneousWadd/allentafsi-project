@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public class Pawn {
+public class Pawn extends Piece{
+    public Pawn(String pos, String col){
+        super(pos, col);
+    }
+
+
+
 }
