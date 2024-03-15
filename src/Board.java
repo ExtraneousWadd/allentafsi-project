@@ -1,7 +1,7 @@
 public class Board {
-    private String[][] board;
+    private Piece[][] board;
     public Board(){
-        board = new String[8][8];
+        board = new Piece[8][8];
         int colour = 0;
         for(int r = 0; r < 8; r++) {
             if(colour == 0){
@@ -19,22 +19,17 @@ public class Board {
                 }
             }
         }
-
-
-
+        board[0][0] = "♙";
+        board[0][7] = "♟";
 
     }
 
     public void printBoard() {
-        for(String[] row : board) {
-            for(String space : row) {
+        for(Piece[] row : board) {
+            for(Piece space : row) {
                 System.out.print(space);
             }
             System.out.println();
         }
-
     }
-
-
-
 }
