@@ -9,6 +9,14 @@ public class Piece {
         dead = false;
 
     }
-
+    public String getPosition() {
+        return position;
+    }
+    public String getColor() {
+        return color;
+    }
+    public boolean isDead() {
+        return this.dead;
+    }
 
 }
