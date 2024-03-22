@@ -1,4 +1,5 @@
-public class Board {
+
+/*public class Board {
     private Piece[][] board;
     public Board(){
         board = new Piece[8][8];
@@ -33,3 +34,5 @@ public class Board {
         }
     }
 }
+*/
+
