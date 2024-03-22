@@ -18,5 +18,11 @@ public class Piece {
     public boolean isDead() {
         return this.dead;
     }
+    public int getRow() {
+        return position.charAt(1) - '1'; // Convert the numeric part of the position to row index
+    }
 
+    public int getColumn() {
+        return position.charAt(0) - 'A'; // Convert the letter part of the position to column index
+    }
 }
