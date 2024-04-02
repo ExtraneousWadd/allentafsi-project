@@ -9,7 +9,9 @@ public class Main {
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
         /*
+
         Board board = new Board();
         board.printBoard();
 

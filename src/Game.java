@@ -1,4 +1,4 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 
 public class Game extends JPanel{
@@ -9,7 +9,6 @@ public class Game extends JPanel{
         setPreferredSize(new Dimension(width, height));
         setBackground(Color.BLACK);
     }
-
     private void update(){
 
     }
@@ -37,6 +36,29 @@ public class Game extends JPanel{
                c = 0;
            }
        }
+       int y = 800;
+       int xcoord = 100;
+       x.setFont(new Font("Arial", Font.PLAIN, 18));
+       for (int i = 0; i < 8; i++){
+           x.drawString(Integer.toString(i), 25, y);
+           y -= 100;
+       }
+       x.drawString("A", xcoord, 25);
+       xcoord += 100;
+       x.drawString("B", xcoord, 25);
+       xcoord += 100;
+       x.drawString("C", xcoord, 25);
+       xcoord += 100;
+       x.drawString("D", xcoord, 25);
+       xcoord += 100;
+       x.drawString("E", xcoord, 25);
+       xcoord += 100;
+       x.drawString("F", xcoord, 25);
+       xcoord += 100;
+       x.drawString("G", xcoord, 25);
+       xcoord += 100;
+       x.drawString("H", xcoord, 25);
+
     }
 
 }
