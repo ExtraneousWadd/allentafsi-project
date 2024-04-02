@@ -1,7 +1,6 @@
-
 public class Board {
     private Piece[][] board;
-    public Board(){
+    public Board() {
         board = new Piece[8][8];
 
         board[0][0] = new Rook("A1", "white");
@@ -36,17 +35,20 @@ public class Board {
         board[6][4] = new Pawn("E7", "black");
         board[6][5] = new Pawn("F7", "black");
         board[6][6] = new Pawn("G7", "black");
-        board[6][7] = new Pawn("E7", "black");
+        board[6][7] = new Pawn("H7", "black");
 
     }
 
-    public void printBoard() {
-        for(Piece[] row : board) {
-            for(Piece space : row) {
-                System.out.print(space);
+        public Piece getPiece(int row, int col) {
+            return board[row][col];
+        }
+
+        public void printBoard () {
+            for (Piece[] row : board) {
+                for (Piece space : row) {
+                    System.out.print(space + " ");
+                }
+                System.out.println();
             }
-            System.out.println();
         }
     }
-}
-

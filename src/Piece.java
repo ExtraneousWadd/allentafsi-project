@@ -1,23 +1,41 @@
-
 public class Piece {
-    private String position;
-    private String color;
-    private boolean dead;
-    public Piece(String pos, String col){
-        position = pos;
-        color = col;
-        dead = false;
+    protected String position;
+    protected String color;
+    protected String type;
+    protected boolean alive;
 
+    public Piece(String position, String color, String type) {
+        this.position = position;
+        this.color = color;
+        this.type = type;
+        this.alive = true;
     }
+
+    @Override
+    public String toString() {
+        return type + "{" +
+                "position='" + position + '\'' +
+                ", color='" + color + '\'' +
+                ", alive=" + alive +
+                '}';
+    }
+
     public String getPosition() {
         return position;
     }
+
     public String getColor() {
         return color;
     }
-    public boolean isDead() {
-        return this.dead;
+
+    public boolean isAlive() {
+        return alive;
     }
+
+    public void setAlive(boolean alive) {
+        this.alive = alive;
+    }
+
     public int getRow() {
         return position.charAt(1) - '1'; // Convert the numeric part of the position to row index
     }
