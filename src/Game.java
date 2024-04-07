@@ -18,7 +18,7 @@ public class Game extends JPanel {
 
     public Game(Board board) {
         this.board = board;
-        setPreferredSize(new Dimension(1300, 900)); // Setting the total size of the panel
+        setPreferredSize(new Dimension(1300, 900));
         setBackground(Color.BLACK);
         setLayout(null); // Using a null layout for absolute positioning
         loadPieceImages();
@@ -28,31 +28,29 @@ public class Game extends JPanel {
         JFrame window = new JFrame("Chess Game");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        window.add(this); // Add the Game panel to the window
+        window.add(this);
         window.pack();
-        window.setLocationRelativeTo(null); // Center the window
+        window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
     private void initializeUserInputComponents() {
-        moveInputField = new JTextField(); // Creates the text field
-        submitMoveButton = new JButton("Submit Move"); // Creates the button
+        moveInputField = new JTextField();
+        submitMoveButton = new JButton("Submit Move");
 
         // Positioning the text field
-        moveInputField.setBounds(1000, 400, 180, 30); // Positioned to the right of the chessboard
-        add(moveInputField); // Adds the text field to the panel
+        moveInputField.setBounds(1000, 400, 180, 30);
+        add(moveInputField);
 
         // Positioning the submit button below the text field
-        submitMoveButton.setBounds(1000, 450, 180, 30); // Adjusted to align below the text field
+        submitMoveButton.setBounds(1000, 450, 180, 30);
         add(submitMoveButton); // Adds the button to the panel
 
-        // Add action listener to the submit button
         submitMoveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String move = moveInputField.getText();
-                // Logic to process the move
-                moveInputField.setText(""); // Clear the input field after submitting
-                repaint(); // Repaint the board
+                moveInputField.setText("");
+                repaint();
             }
         });
     }

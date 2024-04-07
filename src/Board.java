@@ -43,9 +43,17 @@ public class Board {
         return board[row][col];
         }
 
-    public static String toPosition(int row, int col) {
+    public static String toAlgebraicNotation(int row, int col) {
         char line = (char) ('a' + col);
         int rank = 8 - row;
         return "" + line + rank;
+    }
+    public static int[] fromAlgebraicNotation(String notation) {
+        if (notation == null || notation.length() != 2) {
+            throw new IllegalArgumentException("Invalid algebraic notation: " + notation);
+        }
+        int col = notation.charAt(0) - 'a';
+        int row = 8 - Character.getNumericValue(notation.charAt(1));
+        return new int[]{row, col};
     }
 }
