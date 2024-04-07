@@ -1,22 +1,62 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 
 public class Game extends JPanel {
     private Board board;
     private Image[][] pieceImages;
     private Image[][] whitePieceImages;
     private Image[][] blackPieceImages;
+    private JTextField moveInputField;
+    private JButton submitMoveButton;
 
-    public static final int width = 900;
+    public static final int width = 1300;
     public static final int height = 900;
 
     public Game(Board board) {
         this.board = board;
-        setPreferredSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(1300, 900)); // Setting the total size of the panel
         setBackground(Color.BLACK);
+        setLayout(null); // Using a null layout for absolute positioning
         loadPieceImages();
+        initializeUserInputComponents();
     }
+    public void displayGameWindow() {
+        JFrame window = new JFrame("Chess Game");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        window.add(this); // Add the Game panel to the window
+        window.pack();
+        window.setLocationRelativeTo(null); // Center the window
+        window.setVisible(true);
+    }
+    private void initializeUserInputComponents() {
+        moveInputField = new JTextField(); // Creates the text field
+        submitMoveButton = new JButton("Submit Move"); // Creates the button
+
+        // Positioning the text field
+        moveInputField.setBounds(1000, 400, 180, 30); // Positioned to the right of the chessboard
+        add(moveInputField); // Adds the text field to the panel
+
+        // Positioning the submit button below the text field
+        submitMoveButton.setBounds(1000, 450, 180, 30); // Adjusted to align below the text field
+        add(submitMoveButton); // Adds the button to the panel
+
+        // Add action listener to the submit button
+        submitMoveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String move = moveInputField.getText();
+                // Logic to process the move
+                moveInputField.setText(""); // Clear the input field after submitting
+                repaint(); // Repaint the board
+            }
+        });
+    }
+
 
     private void loadPieceImages() {
         pieceImages = new Image[8][8];
@@ -149,3 +189,4 @@ public class Game extends JPanel {
         return new Dimension(width, height);
     }
 }
+

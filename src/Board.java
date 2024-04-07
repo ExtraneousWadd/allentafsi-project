@@ -39,16 +39,13 @@ public class Board {
 
     }
 
-        public Piece getPiece(int row, int col) {
-            return board[row][col];
+    public Piece getPiece(int row, int col) {
+        return board[row][col];
         }
 
-        public void printBoard () {
-            for (Piece[] row : board) {
-                for (Piece space : row) {
-                    System.out.print(space + " ");
-                }
-                System.out.println();
-            }
-        }
+    public static String toPosition(int row, int col) {
+        char line = (char) ('a' + col);
+        int rank = 8 - row;
+        return "" + line + rank;
     }
+}
