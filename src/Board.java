@@ -1,5 +1,9 @@
+import java.util.ArrayList;
+
 public class Board {
     private Piece[][] board;
+
+    private String turn;
     public Board() {
         board = new Piece[8][8];
 
@@ -36,12 +40,13 @@ public class Board {
         board[6][5] = new Pawn("F2", "white");
         board[6][6] = new Pawn("G2", "white");
         board[6][7] = new Pawn("H2", "white");
+        turn = "white";
 
     }
 
     public Piece getPiece(int row, int col) {
         return board[row][col];
-        }
+    }
 
     public static String toAlgebraicNotation(int row, int col) {
         char line = (char) ('a' + col);
@@ -56,4 +61,60 @@ public class Board {
         int row = 8 - Character.getNumericValue(notation.charAt(1));
         return new int[]{row, col};
     }
+    public String getPieceType(Piece piece){
+        if(piece instanceof Pawn){
+            return "pawn";
+        }
+        if(piece instanceof Rook){
+            return "rook";
+        }
+        if(piece instanceof Bishop){
+            return "bishop";
+        }
+        if(piece instanceof King){
+            return "king";
+        }
+        if(piece instanceof Queen){
+            return "queen";
+        }
+        if(piece instanceof Knight){
+            return "knight";
+        }
+        return "";
+    }
+
+    public void move(String start, String end) {
+        int[] startCoords = fromAlgebraicNotation(start);
+        int[] endCoords = fromAlgebraicNotation(end);
+        int startRow = startCoords[0];
+        int startCol = startCoords[1];
+        int endRow = endCoords[0];
+        int endCol = endCoords[1];
+
+        if (board[startRow][startCol] == null || !board[startRow][startCol].getColor().equals(turn)){
+            Game.showInvalidMoveMessage();
+            return;
+        }
+
+        Piece piece = board[startRow][startCol];
+        ArrayList<String> legalMoves = piece.getLegalMoves(this, startRow, startCol);
+        System.out.println(legalMoves);
+
+        String endAlgebraic = toAlgebraicNotation(endRow, endCol);
+
+        if (!legalMoves.contains(endAlgebraic)) {
+            Game.showInvalidMoveMessage();
+            return;
+        }
+        board[endRow][endCol] = piece;
+        board[startRow][startCol] = null;
+        if(turn.equals("white")){
+            turn = "black";
+        } else {
+            turn = "white";
+        }
+    }
+
+
+
 }

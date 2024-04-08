@@ -1,5 +1,6 @@
 import java.awt.image.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pawn extends Piece{
     public Pawn(String pos, String col){
@@ -9,10 +10,10 @@ public class Pawn extends Piece{
     public ArrayList<String> getLegalMoves(Board board, int row, int col) {
         ArrayList<String> legalMoves = new ArrayList<>();
         int direction;
-        if(color.equals("white")){
-             direction = 1;
-        } else {
+        if(this.getColor().equals("white")){
              direction = -1;
+        } else {
+             direction = 1;
         }
 
         if (board.getPiece(row + direction, col) == null) {
@@ -38,4 +39,8 @@ public class Pawn extends Piece{
     }
 
 
+
 }
+
+
+

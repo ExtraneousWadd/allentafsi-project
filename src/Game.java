@@ -13,6 +13,9 @@ public class Game extends JPanel {
     private JTextField moveInputField;
     private JButton submitMoveButton;
 
+    private String start;
+    private String end;
+
     public static final int width = 1300;
     public static final int height = 900;
 
@@ -48,11 +51,24 @@ public class Game extends JPanel {
         submitMoveButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String move = moveInputField.getText();
+                if(moveInputField.getText().length() != 4){
+                    showInvalidMoveMessage();
+                }
+                start = moveInputField.getText().substring(0,2);
+                end = moveInputField.getText().substring(2,4);
+
+
+
+
                 moveInputField.setText("");
                 repaint();
+                board.move(start, end);
             }
         });
+    }
+
+    public static void showInvalidMoveMessage() {
+        JOptionPane.showMessageDialog(null, "Invalid move", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
 
@@ -185,6 +201,14 @@ public class Game extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(width, height);
+    }
+
+    public String getEnd(){
+        return end;
+    }
+
+    public String getStart(){
+        return start;
     }
 }
 

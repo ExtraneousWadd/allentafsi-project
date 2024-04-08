@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Piece {
     protected String position;
     protected String color;
@@ -43,4 +45,11 @@ public class Piece {
     public int getColumn() {
         return position.charAt(0) - 'A'; // Convert the letter part of the position to column index
     }
+
+    public ArrayList<String> getLegalMoves(Board board, int row, int col) {
+        ArrayList<String> legalMoves = new ArrayList<>();
+        return legalMoves;
+    }
+
+
 }
