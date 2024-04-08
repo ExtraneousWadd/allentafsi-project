@@ -70,7 +70,6 @@ public class Game extends JPanel {
 
                 moveInputField.setText("");
 
-                repaint();
                 board.move(start, end);
                 updatePieceImagesAfterMove(startRow, startCol, endRow, endCol);
                 repaint();
@@ -108,6 +107,7 @@ public class Game extends JPanel {
                     }
                 }
             }
+
         }
     }
 
@@ -123,8 +123,10 @@ public class Game extends JPanel {
                 pieceImages[endRow][endCol] = image;
                 if (movedPiece.getColor().equals("white")) {
                     whitePieceImages[endRow][endCol] = image;
+                    blackPieceImages[endRow][endCol] = null;
                 } else {
                     blackPieceImages[endRow][endCol] = image;
+                    whitePieceImages[endRow][endCol] = null;
                 }
                 pieceImages[startRow][startCol] = null;
                 whitePieceImages[startRow][startCol] = null;
