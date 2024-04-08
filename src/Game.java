@@ -70,8 +70,9 @@ public class Game extends JPanel {
 
                 moveInputField.setText("");
 
-                board.move(start, end);
-                updatePieceImagesAfterMove(startRow, startCol, endRow, endCol);
+                if(board.move(start, end)) {
+                    updatePieceImagesAfterMove(startRow, startCol, endRow, endCol);
+                }
                 repaint();
             }
         });

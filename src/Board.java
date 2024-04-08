@@ -83,7 +83,7 @@ public class Board {
         return "";
     }
 
-    public void move(String start, String end) {
+    public boolean move(String start, String end) {
         int[] startCoords = fromAlgebraicNotation(start);
         int[] endCoords = fromAlgebraicNotation(end);
         int startRow = startCoords[0];
@@ -93,7 +93,7 @@ public class Board {
 
         if (board[startRow][startCol] == null || !board[startRow][startCol].getColor().equals(turn)){
             Game.showInvalidMoveMessage();
-            return;
+            return false;
         }
 
         Piece piece = board[startRow][startCol];
@@ -104,7 +104,7 @@ public class Board {
 
         if (!legalMoves.contains(endAlgebraic)) {
             Game.showInvalidMoveMessage();
-            return;
+            return false;
         }
         board[endRow][endCol] = piece;
         board[startRow][startCol] = null;
@@ -113,7 +113,7 @@ public class Board {
         } else {
             turn = "white";
         }
-
+        return true;
     }
 
 
