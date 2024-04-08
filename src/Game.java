@@ -54,15 +54,26 @@ public class Game extends JPanel {
                 if(moveInputField.getText().length() != 4){
                     showInvalidMoveMessage();
                 }
+
                 start = moveInputField.getText().substring(0,2);
                 end = moveInputField.getText().substring(2,4);
+
+                int[] startCoords = board.fromAlgebraicNotation(start);
+                int[] endCoords = board.fromAlgebraicNotation(end);
+                int startRow = startCoords[0];
+                int startCol = startCoords[1];
+                int endRow = endCoords[0];
+                int endCol = endCoords[1];
 
 
 
 
                 moveInputField.setText("");
+
                 repaint();
                 board.move(start, end);
+                updatePieceImagesAfterMove(startRow, startCol, endRow, endCol);
+                repaint();
             }
         });
     }
@@ -99,6 +110,34 @@ public class Game extends JPanel {
             }
         }
     }
+
+    public void updatePieceImagesAfterMove(int startRow, int startCol, int endRow, int endCol) {
+        Piece movedPiece = board.getPiece(endRow, endCol);
+        if (movedPiece != null) {
+            String colorPrefix = movedPiece.getColor().equals("white") ? "white_" : "black_";
+            String pieceType = movedPiece.getClass().getSimpleName().toLowerCase();
+            String imagePath = "src/" + colorPrefix + pieceType + ".png";
+            try {
+                ImageIcon imageIcon = new ImageIcon(imagePath);
+                Image image = imageIcon.getImage();
+                pieceImages[endRow][endCol] = image;
+                if (movedPiece.getColor().equals("white")) {
+                    whitePieceImages[endRow][endCol] = image;
+                } else {
+                    blackPieceImages[endRow][endCol] = image;
+                }
+                pieceImages[startRow][startCol] = null;
+                whitePieceImages[startRow][startCol] = null;
+                blackPieceImages[startRow][startCol] = null;
+
+            } catch (Exception e) {
+                System.err.println("Error updating image: " + e.getMessage());
+            }
+        } else {
+            System.err.println("Error: Attempted to update images for a non-existent piece move.");
+        }
+    }
+
 
     @Override
     protected void paintComponent(Graphics g) {
